@@ -1,8 +1,12 @@
 const express = require ('express');
 const bodyParser = require('body-parser');
 
-// initialize our express app 
+const product = require('./routes/product.route'); //imports routes for the products
+
+// init express app
 const app = express();
+
+app.use('/products', product);
 
 // tell express to listen to this port 
 
@@ -13,3 +17,4 @@ app.listen(port, () => {
 	console.log('server is up and running on port ' + port);
 
 });
+
