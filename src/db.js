@@ -32,4 +32,6 @@ const getDB = () => {
     return state.db;
 }
 
+// expose functions
 module.exports = {getDB, connect, getPrimaryKey};
+

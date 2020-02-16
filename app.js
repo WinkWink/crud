@@ -9,9 +9,25 @@ const path = require('path');
 const db = require("./db");
 const collection = "inventory";
 
+app.get('/',(req,res)=>{
+    res.sendFile(path.join(__dirname, 'index.html'));
+});
+
+app.get('/getInventory',(req,res)=>{
+    db.getDB().collection(collection).find({}).toArray((err,documents)=>{
+        if(err)
+            console.log(err)
+        else{
+            console.log(documents);
+            res.json(documents);
+        }
+    });
+})
+// connect to database
 db.connect((err)=>{
     if(err){
         console.log('unable to connect to db');
+        // terminate the application
         process.exit(1);
     }else{
         app.listen(3000, () =>{
