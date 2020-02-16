@@ -3,7 +3,7 @@ const ObjectID = require('mongodb').ObjectID;
 const dbName = "crud_mongodb";
 // where db is located on local machine 
 const url = "mongodb://localhost:27017";
-const mongoOptions = {useUnifiedTopology: true, useNewUrlParser : true};
+const mongoOptions = {useNewUrlParser : true};
 
 const state  = {
     db: null
