@@ -22,7 +22,43 @@ app.get('/getInventory',(req,res)=>{
             res.json(documents);
         }
     });
-})
+});
+
+app.put('/:id', (req,res)=>{
+    const inventoryID = req.params.id;
+    const userInput = req.body;
+
+    db.getDB().collection(collection).findOneAndUpdate({_id : db.getPrimaryKey(inventoryID)}, {$set : {inventory : userInput.inventory}}, {returnOriginal:false}, (err, result)=>{
+        if(err)
+            console.log(err);
+        else{
+            res.json(result);
+        }
+    });
+});
+
+app.post('/', (req,res)=>{
+    const userInput = req.body;
+    db.getDB().collection(collection).insertOne(userInput, (err,result)=>{
+        if(err)
+            console.log(err);
+        else{
+            res.json({result : result, document : result.ops[0]}); 
+        }
+    });
+});
+
+app.delete('/:id',(req,res)=>{
+    const inventoryID = req.params.id;
+
+    db.getDB().collection(collection).findOneAndDelete({_id: db.getPrimaryKey(inventoryID)}, (err,result)=> {
+        if(err)
+            console.log(err);
+        else{
+            res.json(result);
+        }
+    });
+});
 // connect to database
 db.connect((err)=>{
     if(err){
