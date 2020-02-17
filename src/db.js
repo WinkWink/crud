@@ -35,3 +35,11 @@ const getDB = () => {
 // expose functions
 module.exports = {getDB, connect, getPrimaryKey};
 
+
+/*
+table 
+ID
+Product Name
+
+
+*/
