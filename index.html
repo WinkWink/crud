@@ -17,7 +17,7 @@
 	<div class="d-flex justify-content-center">
 		<form id="form">
 			<input type="text" id="userid" class="form-control" placeholder="ID" readonly autocomplete="off">
-			<input type="text" id="inventoryUserInput" class="form-control" placeholder="Product Name" autocomplete="off">
+			<input type="text" id="userInput" class="form-control" placeholder="Product Name" autocomplete="off">
 			<!-- <input type="price" id="priceUserInput" class="form-control m-0" placeholder="Product Price" autocomplete="off"> -->
 			<div class="d-flex justify-content-center">
 				<button class="btn btn-success" id="btn-create">Create Product</button>
@@ -55,10 +55,21 @@
 		$(document).ready(()=>{
 			const display = $('#display');
 			const form = $('#form');
-			const inventoryUserInput = $('#inventoryUserInput')l
+			const userInput = $('#userInput');
+
+			const getInventory = () => {
+				fetch('/getInventory', {method : "get"}).then((response)=>{
+					return response.json();
+				}).then((data)=>{
+					console.log(data);
+					displayInventory(data);
+				});
+			}
+
+			getInventory();
 
 			const resetInventoryInput = () =>{
-				inventoryUserInput.val('');
+				userInput.val('');
 			}
 
 			const buildIDs = (inventory)=>{
@@ -80,7 +91,7 @@
   			  			</tr>
 			`
 			}
-			const displayTodos = (data)=>{
+			const displayInventory = (data)=>{
 				data.forEach((inventory)=>{
 					let ids = buildIDs(inventory);
 					display.append(buildTemplate(inventory,ids));
