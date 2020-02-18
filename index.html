@@ -72,6 +72,27 @@
 				userInput.val('');
 			}
 
+			const editInventory = (inventory, inventoryID, editID)=>{
+				let editBtn = $(`${editID}`);
+				editBtn.click(()=>{
+					fetch('/${inventory._id}',{
+						method : "put",
+						headers : {
+							"Content-Type" : "application/json; charset=utf8"
+						},
+						body : JSON.stringify({inventory : userInput.val()})
+					}).then((response)=>{
+						return response.json();
+					}).then((data)=>{
+						if(data.ok == 1){
+							let inventoryIndex = $(`#${inventoryID}`);
+							inventoryIndex.html(data.value.inventory);
+							resetInventoryInput();
+						}
+					}); 
+				});
+			}
+
 			const deleteInventory = (inventory, listItemID, deleteID) =>{
 				let deleteBtn = $(`#${deleteID}`);
 				deleteBtn.click(()=>{
@@ -110,7 +131,7 @@
 				data.forEach((inventory)=>{
 					let ids = buildIDs(inventory);
 					display.append(buildTemplate(inventory,ids));
-					// editInventory(inventory,ids.inventoryID, ids.editID);
+					editInventory(inventory,ids.inventoryID, ids.editID);
 					deleteInventory(inventory, ids.listItemID, ids.deleteID);
 				});
 			}
@@ -129,7 +150,7 @@
 					if(data.result.ok === 1 && data.result.n === 1){
 						let ids = buildIDs(data.document);
 						display.append(buildTemplate(data.document,ids));
-						// editInventory(data.document, ids.inventoryID,ids.editID);
+						editInventory(data.document, ids.inventoryID,ids.editID);
 						deleteInventory(data.document,ids.listItemID, ids.deleteID);
 					}
 					resetInventoryInput();
