@@ -89,7 +89,7 @@
 					fetch(`/${inventory._id}`,{
 						method : "put",
 						headers : {
-							"Content-Type" : "application/json; charset=utf8"
+							"Content-Type" : "application/json; charset=utf-8"
 						},
 						body : JSON.stringify({inventory : userInput.val()})
 					}).then((response)=>{
