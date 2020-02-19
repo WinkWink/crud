@@ -84,7 +84,7 @@
 			}
 
 			const editInventory = (inventory, inventoryID, editID)=>{
-				let editBtn = $(`${editID}`);
+				let editBtn = $(`#${editID}`);
 				editBtn.click(()=>{
 					fetch(`/${inventory._id}`,{
 						method : "put",
@@ -94,7 +94,6 @@
 						body : JSON.stringify({inventory : userInput.val()})
 					}).then((response)=>{
 						return response.json();
-						console.log(response.json());
 					}).then((data)=>{
 						if(data.ok == 1){
 							let inventoryIndex = $(`#${inventoryID}`);
