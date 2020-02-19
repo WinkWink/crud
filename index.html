@@ -3,11 +3,22 @@
 <head>
 	<meta charset="UTF-8">
 	<title>CRUD Application for inventory CMS</title>
+	<link type="text/css" href="./style.css">
 	<link rel="script" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js">
-	<link rel="stylesheet" type="text/css" href="style.css">
 	<!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<script src="https://kit.fontawesome.com/5dcb2da325.js" crossorigin="anonymous"></script>
+	<style>
+		.btnedit{
+			color: green;
+			cursor: pointer;
+			}
+
+		.btndelete{
+			color: red;
+			cursor: pointer;
+			}
+	</style>
 <body>
 <!-- -->
 	<div class="container text-center">
@@ -83,6 +94,7 @@
 						body : JSON.stringify({inventory : userInput.val()})
 					}).then((response)=>{
 						return response.json();
+						console.log(response.json());
 					}).then((data)=>{
 						if(data.ok == 1){
 							let inventoryIndex = $(`#${inventoryID}`);

@@ -1,3 +1,4 @@
+
 .d-flex input {
 	margin: .9em 0em;
 }
@@ -11,12 +12,3 @@
 	margin: 1em 10em;
 }
 
-table .btnedit{
-	color: green;
-	cursor: pointer;
-}
-
-table .btndelete{
-	color: red;
-	cursor: pointer;
-}
