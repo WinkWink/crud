@@ -27,7 +27,7 @@ app.get('/getInventory',(req,res)=>{
 app.put('/:id', (req,res)=>{
     const inventoryID = req.params.id;
     const userInput = req.body;
-    const userPrice 
+    // const userPrice 
     db.getDB().collection(collection).findOneAndUpdate({_id : db.getPrimaryKey(inventoryID)}, {$set : {inventory : userInput.inventory}}, {returnOriginal:false}, (err, result)=>{
         if(err)
             console.log(err);

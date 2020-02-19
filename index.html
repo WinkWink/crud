@@ -75,7 +75,7 @@
 			const editInventory = (inventory, inventoryID, editID)=>{
 				let editBtn = $(`${editID}`);
 				editBtn.click(()=>{
-					fetch('/${inventory._id}',{
+					fetch(`/${inventory._id}`,{
 						method : "put",
 						headers : {
 							"Content-Type" : "application/json; charset=utf8"
