@@ -18,6 +18,20 @@
 			color: red;
 			cursor: pointer;
 			}
+		
+		.d-flex input {
+			margin: .9em 0em;
+		}
+
+		.d-flex button{
+		margin: 1.5em .6em;
+		padding: 0.3em 2.4em;
+		}
+
+		.container table{
+			margin: 1em 10em;
+		}
+
 	</style>
 <body>
 <!-- -->
@@ -46,7 +60,7 @@
   			    <th scope="col">ID</th>
   			    <th scope="col">Product Name</th>
   			    <!-- <th scope="col">Price</th> -->
-  			    <th scope="col">Edit</th>
+  			    <!-- <th scope="col">Edit</th> -->
   			    <th scope="col">Delete</th>
 
   			  </tr>
@@ -132,7 +146,6 @@
 						<tr id=${ids.listItemID}>
   			    			<th scope="row">${ids.listItemID}</th>
   			    			<td>${inventory.inventory}</td>
-  			    			<td><i class="fas fa-edit btnedit" id="${ids.editID}"></i></td>
   			    			<td><i class="fas fa-trash-alt btndelete" id="${ids.deleteID}"></i></td>
   			  			</tr>
 			`
