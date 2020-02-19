@@ -26,9 +26,9 @@ app.get('/getInventory',(req,res)=>{
 
 app.put('/:id', (req,res)=>{
     const inventoryID = req.params.id;
-    const userInput = req.body;
+    const iuserInput = req.body;
     // const userPrice 
-    db.getDB().collection(collection).findOneAndUpdate({_id : db.getPrimaryKey(inventoryID)}, {$set : {inventory : userInput.inventory}}, {returnOriginal:false}, (err, result)=>{
+    db.getDB().collection(collection).findOneAndUpdate({_id : db.getPrimaryKey(inventoryID)}, {$set : {inventory : iuserInput.inventory}}, {returnOriginal:false}, (err, result)=>{
         if(err)
             console.log(err);
         else{
@@ -38,8 +38,8 @@ app.put('/:id', (req,res)=>{
 });
 
 app.post('/', (req,res)=>{
-    const userInput = req.body;
-    db.getDB().collection(collection).insertOne(userInput, (err,result)=>{
+    const iuserInput = req.body;
+    db.getDB().collection(collection).insertOne(iuserInput, (err,result)=>{
         if(err)
             console.log(err);
         else{

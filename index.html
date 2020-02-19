@@ -28,7 +28,7 @@
 	<div class="d-flex justify-content-center">
 		<form id="form">
 			<input type="text" id="userid" class="form-control" placeholder="ID" readonly autocomplete="off">
-			<input type="text" id="userInput" class="form-control" placeholder="Product Name" autocomplete="off">
+			<input type="text" id="iuserInput" class="form-control" placeholder="Product Name" autocomplete="off">
 			<!-- <input type="price" id="priceUserInput" class="form-control m-0" placeholder="Product Price" autocomplete="off"> -->
 			<div class="d-flex justify-content-center">
 				<button class="btn btn-success" id="btn-create">Create Product</button>
@@ -66,7 +66,7 @@
 		$(document).ready(()=>{
 			const display = $('#display');
 			const form = $('#form');
-			const userInput = $('#userInput');
+			const iuserInput = $('#iuserInput');
 
 			const getInventory = () => {
 				fetch('/getInventory', {method : "get"}).then((response)=>{
@@ -78,9 +78,9 @@
 			}
 
 			getInventory();
-
-			const resetInventoryInput = () =>{
-				userInput.val('');
+			
+			function resetInventoryInput (){
+				iuserInput.val('');
 			}
 
 			const editInventory = (inventory, inventoryID, editID)=>{
@@ -91,17 +91,16 @@
 						headers : {
 							"Content-Type" : "application/json; charset=utf-8"
 						},
-						body : JSON.stringify({inventory : userInput.val()})
+						body : JSON.stringify({inventory : iuserInput.val()})
 					}).then((response)=>{
 						return response.json();
 					}).then((data)=>{
 						if(data.ok == 1){
-							let inventoryIndex = $(`#${inventoryID}`);
-							inventoryIndex.html(data.value.inventory);
+							$(`#${inventoryID}`).html(data.value.iuserInput);
 							resetInventoryInput();
 						}
-					}); 
-				});
+					})
+				})
 			}
 
 			const deleteInventory = (inventory, listItemID, deleteID) =>{
@@ -115,8 +114,8 @@
 						if(data.ok == 1){
 							$(`#${listItemID}`).remove();
 						}
-					});
-				});
+					})
+				})
 			}
 
 			const buildIDs = (inventory)=>{
@@ -151,7 +150,7 @@
 				e.preventDefault();
 				fetch('/', {
 					method : 'post',
-					body: JSON.stringify({inventory : userInput.val()}),
+					body: JSON.stringify({inventory : iuserInput.val()}),
 					headers: {
 						"Content-Type" : "application/json; charset=utf-8"
 					}
@@ -168,8 +167,6 @@
 				});
 			});
 		});
-
-
 	</script>
 </body>
 </html>
